@@ -25,10 +25,10 @@ if csv_file is not None:
     csv_file_df = pd.read_csv(csv_file, encoding='euc-kr')
     st.write(csv_file_df.head())
 
-column = st.radio(label="열 이름을 선택해주세요.", options = csv_file_df.columns)
-st.subheader(f"{column}의 분포를 그려보겠습니다.")
-st.bar_chart(csv_file_df[column].value_counts())
-
-fig, ax = plt.subplots()
-sns.histplot(csv_file_df[column], binrange=[2500, 7000], binwidth=100)
-st.pyplot(fig)
+    column = st.radio(label="열 이름을 선택해주세요.", options = csv_file_df.columns)
+    st.subheader(f"{column}의 분포를 그려보겠습니다.")
+    st.bar_chart(csv_file_df[column].value_counts())
+    if column == "body_mass_g":
+        fig, ax = plt.subplots()
+        sns.histplot(csv_file_df[column], binrange=[2500, 7000], binwidth=100)
+        st.pyplot(fig)
